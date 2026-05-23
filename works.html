@@ -51,30 +51,36 @@
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-stone-900 dark:text-stone-100 min-h-screen flex flex-col overflow-x-hidden antialiased">
 
-    <!-- Top Navigation -->
-    <header class="sticky top-0 z-50 glass-card border-b border-stone-200 dark:border-white/10 px-8 py-4">
-        <div class="max-w-[1400px] mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-8">
-                <div class="flex items-center gap-3 text-stone-900 dark:text-white">
-                    <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
-                        <span class="material-symbols-outlined text-xl">tile_medium</span>
-                    </div>
-                    <h2 class="text-stone-900 dark:text-white text-xl font-bold tracking-tight">Ceramic Arts Korea</h2>
+    <!-- Navigation -->
+    <header class="glass sticky top-0 z-50 flex items-center justify-between whitespace-nowrap px-6 py-4 lg:px-10">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-3 text-stone-900 dark:text-white">
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-3xl">planet</span>
                 </div>
-                <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-stone-500 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Exhibitions</a>
-                    <a class="text-stone-900 dark:text-white text-sm font-medium" href="#">Departments</a>
-                    <a class="text-stone-500 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">History</a>
-                    <a class="text-stone-500 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Shop</a>
-                </nav>
+                <h2 class="text-lg font-bold tracking-tight font-display">
+                    a.palebluedot23</h2>
             </div>
-            <div class="flex items-center gap-6">
-                <div class="hidden lg:flex items-center bg-stone-200/60 dark:bg-surface-dark rounded-full px-4 py-2 border border-stone-300 dark:border-white/5 focus-within:border-primary/50 transition-colors w-64">
-                    <span class="material-symbols-outlined text-stone-500 dark:text-slate-400 text-[20px]">search</span>
-                    <input class="bg-transparent border-none text-sm text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-slate-500 focus:ring-0 w-full ml-2" placeholder="Search archives..." type="text"/>
+            <nav class="hidden md:flex items-center gap-6">
+                <a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Exhibitions</a>
+                <a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Artists</a>
+                <a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Learn</a>
+                <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Shop</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-4 md:gap-6">
+            <label class="hidden lg:flex relative group min-w-40 max-w-64">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-stone-400 group-focus-within:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">search</span>
                 </div>
-                <button class="bg-primary hover:bg-amber-700 text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all shadow-[0_0_15px_rgba(184,134,11,0.3)]">
+                <input class="block w-full rounded-full bg-stone-200/60 dark:bg-stone-800/50 border-none py-2 pl-10 pr-4 text-sm text-stone-900 dark:text-white placeholder:text-stone-500 focus:ring-2 focus:ring-primary focus:bg-transparent transition-all" placeholder="Search archives..." type="text"/>
+            </label>
+            <div class="flex gap-3">
+                <button class="flex items-center justify-center rounded-full h-9 px-5 bg-transparent border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-white text-xs font-bold uppercase tracking-wider hover:bg-stone-200/50 dark:hover:bg-stone-800 transition-all">
                     Sign In
+                </button>
+                <button class="flex items-center justify-center rounded-full h-9 px-5 bg-primary text-white text-xs font-bold uppercase tracking-wider hover:bg-amber-700 shadow-[0_0_15px_rgba(184,134,11,0.3)] transition-all">
+                    Join
                 </button>
             </div>
         </div>
