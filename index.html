@@ -1,24 +1,332 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html class="dark" lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>a.palebluedot</title>
-  <link rel="stylesheet" href="css/index.css">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Korean Ceramic Arts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b8860b", // 따뜻한 분위기에 어울리는 고급스러운 골든 브라운
+                        "background-light": "#f4f1ea", // 차가운 샌드 대신 따뜻한 온기가 도는 웜 베이지
+                        "background-dark": "#1e1b18", // 너무 차갑지 않은 웜 흑색/다크 브라운
+                        "surface-dark": "#2a2622", // 다크모드용 매트한 흙색 표면
+                        "clay-red": "#9a4a3c", // 전통적인 도자기 느낌의 테라코타 레드
+                        "sand": "#e3ded5", // 은은한 도자 표면 느낌의 샌드 베이지
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Glassmorphism utilities - 따뜻한 베이트 톤과 어우러지도록 매칭 */
+        .glass {
+            background: rgba(244, 241, 234, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(154, 74, 60, 0.08);
+        }
+        .dark .glass {
+            background: rgba(30, 27, 24, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(227, 222, 213, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(154, 74, 60, 0.08);
+        }
+        .dark .glass-card {
+            background: rgba(42, 38, 34, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
-<body>
-  <div class="transition-overlay" id="transition"></div>
-  
-  <canvas id="bg"></canvas>
-  
-  <div class="scene" id="scene">
-    <div class="center">
-      <div class="title" id="title">a.palebluedot</div>
-      <div class="sub">
-        <div class="link enter">Enter</div>
-      </div>
+<body class="bg-background-light dark:bg-background-dark text-stone-900 dark:text-stone-100 font-display transition-colors duration-300 min-h-screen flex flex-col">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        
+        <!-- Navigation -->
+        <header class="glass sticky top-0 z-50 flex items-center justify-between whitespace-nowrap px-6 py-4 lg:px-10">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 text-stone-900 dark:text-white">
+                    <div class="size-8 text-primary">
+                        <span class="material-symbols-outlined text-3xl">manufacturing</span>
+                    </div>
+                    <h2 class="text-lg font-bold tracking-tight uppercase font-display">Ceramic Arts Korea</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Exhibitions</a>
+                    <a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Artists</a>
+                    <a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Learn</a>
+                    <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Shop</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6">
+                <label class="hidden lg:flex relative group min-w-40 max-w-64">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-stone-400 group-focus-within:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">search</span>
+                    </div>
+                    <input class="block w-full rounded-full bg-stone-200/60 dark:bg-stone-800/50 border-none py-2 pl-10 pr-4 text-sm text-stone-900 dark:text-white placeholder:text-stone-500 focus:ring-2 focus:ring-primary focus:bg-transparent transition-all" placeholder="Search archives..." type="text"/>
+                </label>
+                <div class="flex gap-3">
+                    <button class="flex items-center justify-center rounded-full h-9 px-5 bg-transparent border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-white text-xs font-bold uppercase tracking-wider hover:bg-stone-200/50 dark:hover:bg-stone-800 transition-all">
+                        Sign In
+                    </button>
+                    <button class="flex items-center justify-center rounded-full h-9 px-5 bg-primary text-white text-xs font-bold uppercase tracking-wider hover:bg-amber-700 shadow-[0_0_15px_rgba(184,134,11,0.3)] transition-all">
+                        Join
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 py-8 lg:px-10 max-w-[1400px]">
+            
+            <!-- Hero Section / Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)] mb-12">
+                
+                <!-- Main Feature (Large) -->
+                <div class="md:col-span-12 lg:col-span-8 row-span-2 relative group overflow-hidden rounded-2xl shadow-md">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Close up of hands shaping clay on a pottery wheel in dramatic lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKkpELcC6Pu8tCfJUaHEYVkkkgbfvZuWkFcTiVTh4PSJPRQ0AiDJ3d4j1WnllvCDAj7P2frOKxTxvaOqjgoxPRCfajYOyPsqKWKCKqVngIoARohvMzngzShtYxJwgkzgbP2RNQCPYGJL_TDifmAl28fvfMG4MMrG0Sylz8rDXSHee4t7fYPFynLbFOFwQ4Ycn8bpQ1zHPWFu1V6z3KKC8owrX_Q75oAYHjhR18Gp6zJMb2iBFLFsFEv1YOubVNHxhqm4E4b88CmZM");'></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full flex flex-col items-start gap-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-white">
+                            <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-white">Editor's Choice</span>
+                        </div>
+                        <h1 class="font-serif text-4xl md:text-5xl lg:text-7xl font-medium text-white leading-tight tracking-tight">
+                            The Resurgence <br/>
+                            <span class="text-stone-300 italic">of Celadon</span>
+                        </h1>
+                        <p class="max-w-xl text-stone-300 text-sm md:text-base leading-relaxed mb-4 font-light">
+                            Explore the intersection of traditional Goryeo dynasty techniques and brutalist modern design in our latest curated exhibition featuring Master Lee Seul-gi.
+                        </p>
+                        <button class="group/btn flex items-center gap-2 bg-white text-stone-950 px-6 py-3 rounded-full font-bold text-sm tracking-wide hover:bg-primary hover:text-white transition-all duration-300">
+                            View Collection
+                            <span class="material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Secondary Feature (Medium) -->
+                <div class="md:col-span-6 lg:col-span-4 row-span-1 relative group overflow-hidden rounded-2xl bg-surface-dark border border-stone-800 shadow-md">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-40 transition-opacity duration-500" data-alt="Minimalist white ceramic vases on a concrete shelf" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDkdDPZl627QHKozOw4ZrrAPijLNFadtdS-M8Gc56hmgUK-FzDg4N92m_MZHiSc15jCmC1LwvJLyTUMDIyA4AapYq9krqfIrL1-2eTKoMgsTxEAPPWIG01x8nc_PiJ_s3kiwef8w42uLyVd2x5-7ja8GnOSFPcB7yOnkqUHQ-3qq2cqsHSYg2xxtaGZTR9CEyI-68OlX7m_RNbHfUVgRZssUIYjljf4nCEhtUnUcjb-koD0bBjlqAMd2JWWcFQvZxTGeWTmmuHrVAU");'></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-stone-950/90"></div>
+                    <div class="relative h-full flex flex-col justify-end p-6">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <h3 class="text-stone-400 text-xs font-bold uppercase tracking-widest mb-2">Latest Gallery</h3>
+                                <p class="text-white font-serif text-2xl md:text-3xl leading-none">Modern Forms</p>
+                            </div>
+                            <button class="size-10 rounded-full bg-primary/20 hover:bg-primary flex items-center justify-center text-white transition-colors border border-white/10">
+                                <span class="material-symbols-outlined text-xl">north_east</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tertiary Feature (Small - Find School) -->
+                <div class="md:col-span-6 lg:col-span-4 row-span-1 relative group overflow-hidden rounded-2xl bg-clay-red shadow-md">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+                    <div class="absolute -right-4 -top-4 size-32 bg-white/10 rounded-full blur-2xl"></div>
+                    <div class="relative h-full flex flex-col justify-between p-6">
+                        <div class="flex items-center gap-2 text-white/80">
+                            <span class="material-symbols-outlined">school</span>
+                            <span class="text-xs font-bold uppercase tracking-widest">Education</span>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-serif text-2xl mb-1">Master Classes</h3>
+                            <p class="text-white/70 text-sm mb-4">Find a studio near you.</p>
+                            <div class="flex gap-2">
+                                <span class="px-2 py-1 bg-black/20 rounded text-xs text-white/90">Seoul</span>
+                                <span class="px-2 py-1 bg-black/20 rounded text-xs text-white/90">Busan</span>
+                                <span class="px-2 py-1 bg-black/20 rounded text-xs text-white/90">+4 More</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Curated Collections Section -->
+            <div class="flex flex-col gap-6 mb-16">
+                <div class="flex items-end justify-between border-b border-stone-300 dark:border-stone-800 pb-4">
+                    <h2 class="font-serif text-3xl md:text-4xl text-stone-900 dark:text-white">Curated Collections</h2>
+                    <a class="hidden md:flex items-center gap-1 text-sm font-bold text-primary hover:text-amber-600 uppercase tracking-wider" href="#">
+                        View All Archives <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Collection Card 1 -->
+                    <div class="flex flex-col md:flex-row bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-stone-200 dark:border-stone-800 group">
+                        <div class="w-full md:w-2/5 aspect-video md:aspect-auto bg-cover bg-center" data-alt="Dark moody ceramic bowl with gold kintsugi repair" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbxe2funGIr0DQeAYAiP3lFQX5BO9PmvVBHfdcK2ke24yVLH2OIQHC3Dw9BMn1hbzy9bh1U9_QablrItmPv3yP7hCg9VaGBuS6rjXuCrM5Rkwf7Q66eP0v8tz7pSwhjZqGW1degvAaMhsl0v_t_vfJw9d-ZC6kiKlvUO3Wf-XBukfwiuY8-vJVuvA2-Z6wWjuL_E0XQRfQM8VZd5YmLzZ0e9A-sP57_eOWkShM62qtwiG0ASKgzR41suPZvscZwX10mW_BbpB7QSw");'></div>
+                        <div class="flex-1 p-6 flex flex-col justify-center">
+                            <span class="text-clay-red dark:text-clay-red text-xs font-extrabold uppercase tracking-widest mb-2">Technique Spotlight</span>
+                            <h3 class="text-2xl font-serif text-stone-900 dark:text-white mb-3 group-hover:text-primary transition-colors">Kintsugi &amp; The Art of Repair</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-sm mb-6 line-clamp-2">
+                                Embracing imperfections through the golden joinery technique that treats breakage as part of the history of an object.
+                            </p>
+                            <button class="self-start text-xs font-bold uppercase tracking-wider border-b-2 border-stone-300 dark:border-stone-700 pb-1 hover:border-primary hover:text-primary transition-all">Read Journal</button>
+                        </div>
+                    </div>
+
+                    <!-- Collection Card 2 -->
+                    <div class="flex flex-col md:flex-row bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-stone-200 dark:border-stone-800 group">
+                        <div class="w-full md:w-2/5 aspect-video md:aspect-auto bg-cover bg-center" data-alt="Collection of minimalist beige ceramic plates stacked" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHNoVgAoL5yyL69X-DZuTc26SwLEM-IkPUv94lr9gU7OwQnVJx0ieHRmGu8lJGfJ7biSH7rm6TbsCg_lQcC2vmLdf754Mbz_DMAGvva1idd77riVwRUartwo4kPkswq-MxxjpNo2vv__3mmkWzLosqPgCPQeqi70XjgpgHe7wdJTYGer5vEW9ZikRV5Hi1xxAHgQe9Z7XRl3C5Uqh7umKBxLpdDhDTLByrKSYTgsAsYqGkdE5UqXqwih1GaCvmJXB28qM5EYfQHZA");'></div>
+                        <div class="flex-1 p-6 flex flex-col justify-center">
+                            <span class="text-primary text-xs font-extrabold uppercase tracking-widest mb-2">New Arrivals</span>
+                            <h3 class="text-2xl font-serif text-stone-900 dark:text-white mb-3 group-hover:text-primary transition-colors">Minimalist Tableware</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-sm mb-6 line-clamp-2">
+                                A selection of everyday ceramics that blend functionality with the stark beauty of unglazed clay bodies.
+                            </p>
+                            <button class="self-start text-xs font-bold uppercase tracking-wider border-b-2 border-stone-300 dark:border-stone-700 pb-1 hover:border-primary hover:text-primary transition-all">Browse Shop</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Shop Teaser Grid -->
+            <div class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="w-12 h-[1px] bg-stone-300 dark:bg-stone-700"></span>
+                    <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">Featured Artists</h3>
+                    <span class="flex-1 h-[1px] bg-stone-300 dark:bg-stone-700"></span>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    
+                    <!-- Item 1 -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square rounded-lg bg-stone-200/50 dark:bg-stone-800 mb-3 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Handcrafted white porcelain vase with organic texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuABMYXitA1yV_9egBX1sqLlbzhqyzE5YA7BWBzXAfg7CqtGa7kRpa8i1M40LjuYT6yBDlqLzfgBN9c8uM9Lklt1dDbNpm1vfooKI-yPGTh5K4Oqzd4dOHeQE13Ylm1cdpmN12CAOpGbiIT-AShlez3DH-fgDYYQcf7FfQCSbyPW3gB-86rNno1dCcC8DvRkrDDGhUrh29gjWUT4__I-UXFfjMMRkr8w_XpuKhpv-LpWbPKfwoofb6a6FtxJwX-VDZIQlXpM6IjTFkc");'></div>
+                            <div class="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/40">
+                                <span class="material-symbols-outlined text-white text-sm">favorite</span>
+                            </div>
+                        </div>
+                        <h4 class="text-stone-900 dark:text-white font-bold text-sm">Moon Jar No. 5</h4>
+                        <p class="text-stone-500 text-xs">Park Young-Sook</p>
+                        <p class="text-primary text-sm font-bold mt-1">₩2,500,000</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square rounded-lg bg-stone-200/50 dark:bg-stone-800 mb-3 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Dark clay matcha bowl with green glaze drip" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOGvHyoOI-vUKxM7Ht8kfRx84GGAjAzuEWvXOUIEKQu48MufajrU8Sp5DSj7Gk0UR0F5ooDmgSyKBIOJqcbgl-habQtzXbEA0Tbc3ylVL658BTqB_SoNBnygPdf4SiPj9zHvj-2yMkD9akkVGdCPhjwhXTYgTpgfe7XpJhlu8SgmRapDxS6UnG32ueS1VqKEbDhvw3ALpx-5-QbWK7PztUzNnj0u3GoaayCs_nwLaRdpqrO8cCWaAqjB8TmA8CA0P-9mH-ZL6bHCU");'></div>
+                            <div class="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/40">
+                                <span class="material-symbols-outlined text-white text-sm">favorite</span>
+                            </div>
+                        </div>
+                        <h4 class="text-stone-900 dark:text-white font-bold text-sm">Forest Matcha Bowl</h4>
+                        <p class="text-stone-500 text-xs">Kim Min-Jae</p>
+                        <p class="text-primary text-sm font-bold mt-1">₩180,000</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square rounded-lg bg-stone-200/50 dark:bg-stone-800 mb-3 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Set of three gradient ceramic cups" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmdKPebfIKGY5AMlRl4gqjRYKj13Rxsr-PD6cNmqQBvWy6Q-ql9H0iGrb65b2MPBYn_z9lwvbRzOZo9xpSZ1FuN9_6IUNLWAXBo3-RQtxs102bMyqxYpVuyzydTf-K8mWqQNyBGnzZokY3dxTK-wv5sd0CsWCMxpz3s6RJ9-TrO59g01IcXOTdC5P9GM_YgpYlnd61y-dfKLxOPRF4t9M79QPoOe5ad8iNfy-ZmG4dB45MciZVajkeGjTTUAhXxVhyEaA6jwAISsA");'></div>
+                            <div class="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/40">
+                                <span class="material-symbols-outlined text-white text-sm">favorite</span>
+                            </div>
+                        </div>
+                        <h4 class="text-stone-900 dark:text-white font-bold text-sm">Sunset Sake Set</h4>
+                        <p class="text-stone-500 text-xs">Studio O</p>
+                        <p class="text-primary text-sm font-bold mt-1">₩320,000</p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square rounded-lg bg-stone-200/50 dark:bg-stone-800 mb-3 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Abstract ceramic sculpture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCuUfn3fvaAwdf2H1kHhcTS3F102PhRkRzXA3tvUjlh7VuqqluGutCtzOkwVF-blWt_UIEbMXTwGMJKCwcbKxMontowOo5indZ2a6L1uEIrpxIqne-KIrymR7SbOKpESIf-AJLZ4XGu3e7VY5GrXx6v9zm3-dGg_XxJ45eY9Tpg-kXVqzio4wakjmZCKTVIRhti0okhHVgV45BEebvx22x2_8rrMMEMS_ZWdIeHBfEMO-iEekU5Lqn-vcq16SYBklWBjXRhzemjzko");'></div>
+                            <div class="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/40">
+                                <span class="material-symbols-outlined text-white text-sm">favorite</span>
+                            </div>
+                        </div>
+                        <h4 class="text-stone-900 dark:text-white font-bold text-sm">Flow State Sculpture</h4>
+                        <p class="text-stone-500 text-xs">Lee Jin</p>
+                        <p class="text-primary text-sm font-bold mt-1">₩850,000</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-surface-dark border-t border-stone-800 pt-16 pb-8 px-6 lg:px-10">
+            <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 text-white mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl">manufacturing</span>
+                        <span class="font-bold text-lg font-display uppercase tracking-wider">Ceramic Arts Korea</span>
+                    </div>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">
+                        Bridging the gap between Korea's rich ceramic heritage and contemporary digital craftsmanship.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="text-stone-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+                        <a class="text-stone-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">photo_camera</span></a>
+                        <a class="text-stone-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Marketplace</h4>
+                    <ul class="space-y-3 text-sm text-stone-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">All Products</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Fine Art</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Tableware</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Home Decor</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Community</h4>
+                    <ul class="space-y-3 text-sm text-stone-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">Artist Directory</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Upcoming Exhibitions</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Workshops</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Newsletter</h4>
+                    <p class="text-stone-400 text-xs mb-4">Curated finds and exhibition news delivered weekly.</p>
+                    <div class="flex">
+                        <input class="bg-stone-900 border border-stone-700 rounded-l-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-primary w-full" placeholder="Email address" type="email"/>
+                        <button class="bg-primary hover:bg-amber-700 text-white px-4 py-2 rounded-r-lg font-bold text-xs uppercase tracking-wider transition-colors">
+                            Sub
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="max-w-[1400px] mx-auto pt-8 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-stone-500 text-xs">© 2023 Ceramic Arts Korea. All rights reserved.</p>
+                <div class="flex gap-6 text-xs text-stone-500">
+                    <a class="hover:text-stone-300" href="#">Privacy Policy</a>
+                    <a class="hover:text-stone-300" href="#">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+
     </div>
-  </div>
-  <script src="js/index.js"></script>
 </body>
 </html>
