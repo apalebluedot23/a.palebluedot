@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>a.palebluedot23</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght=300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght=300;400;500;700;800&amp;family=Playfair+Display:ital,wght=0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
@@ -22,6 +22,7 @@
                     },
                     fontFamily: {
                         display: ["Manrope", "sans-serif"],
+                        serif: ["Playfair Display", "serif"],
                     },
                     backgroundImage: {
                         'glass-gradient': 'linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
@@ -31,7 +32,19 @@
         }
     </script>
     <style>
-        /* Glassmorphism utilities - 따뜻한 베이지 톤과 어우러지도록 매칭 */
+        /* 새롭게 적용된 Sticky & Blur 헤더 스타일 */
+        .glass {
+            background: rgba(244, 241, 234, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(154, 74, 60, 0.08);
+        }
+        .dark .glass {
+            background: rgba(30, 27, 24, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* 기존 카드용 Glassmorphism 스타일 유지 */
         .glass-card {
             background: rgba(227, 222, 213, 0.3);
             backdrop-filter: blur(12px);
@@ -51,7 +64,7 @@
 </head>
 <body class="bg-background-light dark:bg-background-dark text-stone-900 dark:text-stone-100 font-display transition-colors duration-300 min-h-screen flex flex-col">
 
-    <!-- Navigation -->
+    <!-- 🌟 새롭게 변경된 Navigation Header (Sticky & Glassmorphism 적용) -->
     <header class="glass sticky top-0 z-50 flex items-center justify-between whitespace-nowrap px-6 py-4 lg:px-10">
         <div class="flex items-center gap-8">
             <div class="flex items-center gap-3 text-stone-900 dark:text-white">
@@ -86,7 +99,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content (기존 본문 레이아웃 유지) -->
     <main class="flex-grow flex flex-col items-center py-10 px-6 sm:px-10">
         <div class="w-full max-w-[1200px] flex flex-col gap-10">
             
